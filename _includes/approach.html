@@ -1,6 +1,18 @@
 <div class="page-header"><h2>Approach</h2></div>
+<p>
+	The main goal of this project is to create a scheduling algorithm that is friendly toward small and medium-sized businesses that do not require the granularity and minute cost savings of scheduling algorithms created for large businesses. 
+</p>
+<p>
+	A binary integer programming model was chosen because, based on treating shifts as immutable 4-hour blocks, a binary integer programming model allows for efficient solving relative to other nonlinear models. In addition, the application of heuristics is more straightforward. </p>
+	<p>
+	When considering other models, meeting constraints of number of employee shifts per time period becomes computationally difficult. In models that optimize based on minimizing labor costs,  this becomes a variable instead of a constraint, and hence the model is more applicable. 
+</p>
 
-<p>Employee$_{min,j}$: Minimum employees working at time. Bacon ipsum dolor sit amet ham brisket drumstick venison, meatball cow jerky spare ribs doner beef ribs boudin tenderloin tail sirloin.  Capicola andouille strip steak chicken.  Pork rump pork belly pastrami pancetta pig biltong doner bacon frankfurter pork loin fatback.  Shank meatball jowl turkey ground round tenderloin.  Tri-tip swine bacon filet mignon, pork chop tenderloin doner short ribs.  Ball tip short ribs fatback sirloin drumstick turducken ribeye pork chop tenderloin.  Bacon pancetta jerky pork loin flank chicken salami shankle ham hock ham pastrami.</p><p>Tri-tip jerky ground round ball tip hamburger sirloin pig beef t-bone boudin ham hock venison shankle.  Cow swine jowl venison spare ribs.  Ribeye tenderloin short loin short ribs doner venison tri-tip shankle beef bacon.  Shankle salami biltong rump, brisket ball tip prosciutto ground round beef ribs sirloin.  Kielbasa pork chop hamburger, ground round pork loin ball tip jerky boudin short loin turducken shankle.  Salami pork pork loin, hamburger strip steak beef frankfurter.</p>
-$$\sum\limits_{j}Preferences_{i,j} = \sum\limits_{j}Availability_{i,j}$$
-
-<p>Drumstick meatloaf shankle capicola beef ribs shoulder kielbasa brisket ham hock.  Pork loin strip steak ribeye pastrami tenderloin ground round tongue.  Leberkas turkey shank salami ham filet mignon tail beef biltong ball tip pig chuck shoulder ground round ham hock.  Leberkas ball tip ground round turkey pork loin sirloin, cow biltong ham pancetta tenderloin shank.  Pastrami ham hock t-bone ham pig shoulder ball tip.  Brisket turkey pork chop, corned beef drumstick salami jerky kielbasa bresaola pancetta t-bone pork belly beef ribs.  Short ribs shoulder pig bacon ground round ball tip t-bone pork loin ham hock.</p><p>Shoulder meatball t-bone andouille.  Pastrami boudin flank doner leberkas pork loin spare ribs pork chop.  Pastrami tenderloin pork chop ground round chicken andouille sausage short ribs turkey swine spare ribs.  Pork sirloin ham meatball doner boudin chuck ribeye pork belly.</p><p>Filet mignon cow turkey spare ribs.  Chicken kielbasa tenderloin fatback rump t-bone, leberkas ribeye.  Pork chop swine spare ribs ground round sirloin cow, filet mignon pork belly shank fatback.  Drumstick hamburger tri-tip andouille.  Biltong sirloin capicola, beef ribs ham hock short loin short ribs boudin shoulder t-bone tail ribeye chuck jowl salami.  Beef pork belly corned beef, chuck sausage drumstick turducken ham hock fatback.</p>
+<p>
+	The following characteristics are unique to this scheduling approach:</p>
+	<ul>
+		<li>Allows employees to specify preferred shifts</li>
+		<li>Weights employee shift preference based on number of preferred shifts, thus making it more likely for an employee to receive their preferred shifts if they specify fewer preferences</li>
+		<li>Does not penalize employees who choose not to specify preferred shifts</li>
+	</ul>
+	

@@ -1,0 +1,4 @@
+markdown: rdiscount
+pygments: false
+permalink: /:title
+exclude: upload.py, README.md  Gemfile, Gemfile.lock, Procfile, vendor

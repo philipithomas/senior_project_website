@@ -1,6 +1,60 @@
 <div class="page-header"><h2>Model</h2></div>
 
-<p>Employee$_{min,j}$: Minimum employees working at time. Bacon ipsum dolor sit amet ham brisket drumstick venison, meatball cow jerky spare ribs doner beef ribs boudin tenderloin tail sirloin.  Capicola andouille strip steak chicken.  Pork rump pork belly pastrami pancetta pig biltong doner bacon frankfurter pork loin fatback.  Shank meatball jowl turkey ground round tenderloin.  Tri-tip swine bacon filet mignon, pork chop tenderloin doner short ribs.  Ball tip short ribs fatback sirloin drumstick turducken ribeye pork chop tenderloin.  Bacon pancetta jerky pork loin flank chicken salami shankle ham hock ham pastrami.</p><p>Tri-tip jerky ground round ball tip hamburger sirloin pig beef t-bone boudin ham hock venison shankle.  Cow swine jowl venison spare ribs.  Ribeye tenderloin short loin short ribs doner venison tri-tip shankle beef bacon.  Shankle salami biltong rump, brisket ball tip prosciutto ground round beef ribs sirloin.  Kielbasa pork chop hamburger, ground round pork loin ball tip jerky boudin short loin turducken shankle.  Salami pork pork loin, hamburger strip steak beef frankfurter.</p>
+<h3>Indices</h3>
+i: Employee<br />
+j: Shift<br />
+
+<h3>Parameters</h3>
+Employee$_{min,j}$: Minimum employees working at time<br />
+Employee$_{max,j}$: Maximum employees working at time<br />
+Preference$_{i,j}$: Employee Weighted Shift Preference<br />
+Availability$_{i,j}$: Boolean employee availability at time<br />
+
+
+Shift$_{min}$: Minimum employee shift length <br />
+Shift$_{max}$: Maximum employee shift length<br />
+
+<h3>Decision Variable</h3>
+x$_{i,j}$: Employees working at time
+
+
+<h3>Constraints</h3>
+<!-- TODO -->
+
+<h3>Employee Shift Weighting</h3>
+<p>The employee preference parameter is created to allow employees to designate shifts they prefer. The model then optimizes to give employees the shifts they desire. </p>
+<p>
+The preferences parameter is calculated such that:</p>
+
 $$\sum\limits_{j}Preferences_{i,j} = \sum\limits_{j}Availability_{i,j}$$
 
-<p>Drumstick meatloaf shankle capicola beef ribs shoulder kielbasa brisket ham hock.  Pork loin strip steak ribeye pastrami tenderloin ground round tongue.  Leberkas turkey shank salami ham filet mignon tail beef biltong ball tip pig chuck shoulder ground round ham hock.  Leberkas ball tip ground round turkey pork loin sirloin, cow biltong ham pancetta tenderloin shank.  Pastrami ham hock t-bone ham pig shoulder ball tip.  Brisket turkey pork chop, corned beef drumstick salami jerky kielbasa bresaola pancetta t-bone pork belly beef ribs.  Short ribs shoulder pig bacon ground round ball tip t-bone pork loin ham hock.</p><p>Shoulder meatball t-bone andouille.  Pastrami boudin flank doner leberkas pork loin spare ribs pork chop.  Pastrami tenderloin pork chop ground round chicken andouille sausage short ribs turkey swine spare ribs.  Pork sirloin ham meatball doner boudin chuck ribeye pork belly.</p><p>Filet mignon cow turkey spare ribs.  Chicken kielbasa tenderloin fatback rump t-bone, leberkas ribeye.  Pork chop swine spare ribs ground round sirloin cow, filet mignon pork belly shank fatback.  Drumstick hamburger tri-tip andouille.  Biltong sirloin capicola, beef ribs ham hock short loin short ribs boudin shoulder t-bone tail ribeye chuck jowl salami.  Beef pork belly corned beef, chuck sausage drumstick turducken ham hock fatback.</p>
+<p>Should an employee choose not to specify priority shifts, or if an employee chooses to prioritize all shifts, the preference matrix should thus be equally weighted, and equal to the availability parameter:</p>
+
+$$Preferences_{i,j} = Availability_{i,j}$$
+
+<p>Based on the objective function, priority shifts are upweighted, and based on the specified constraints the non-priority shifts must be downweighted. The upweighting factor is designated as $\alpha$ and the downweighting factor is designated as $\beta$. </p>
+<p>
+Considering j = 4 with one specified priority shift:
+</p>
+$$ (1 + \alpha) + (1-\beta) + (1-\beta) + (1-\beta) = 4 $$
+<p>
+Thus, in this case: $$\alpha = 3\beta$$</p>
+<p>
+Clearly, $\beta$ must always be less than one. However, we also consider that employees who specify only a single priority shift have more weight placed on that shift than someone who prioritizes all but one shift.  We specify that a prioritized shift may be no more than twice as weighted as a non-weighted shift, thus $\alpha<1$.
+</p>
+$$\alpha_{i} = \frac{count(\beta)}{\sum\limits_{j}Availability_{i,j}}$$
+
+<p>Thus,</p>
+
+$$\beta_{i} = \alpha \frac{count(\alpha)}{count(\beta)}$$
+<p>
+In addition, if $count(\beta_{i})=0$ or $count(\alpha_{i})=0$,</p>
+$$ \beta_{i} = \alpha_{i} = 0 $$ 
+<p>
+Thus,</p> 
+$$ \alpha_{i}*count(\alpha_{i}) +\beta_{i} * count(\beta_{i}) = \sum\limits_{j}Availability_{i,j}$$
+
+
+<h3>Objective Function</h3>
+
+$$ max~Z = \sum\limits_{i,j} x_{i,j} * Preferences_{i,j}$$

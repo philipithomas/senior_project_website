@@ -13,8 +13,11 @@ Availability$_{i,j}$: Boolean employee availability at time<br />
 Shift$_{min,i}$: Minimum employee shifts per week<br />
 Shift$_{max,i}$: Maximum employee shifts per week
 <h3>Decision Variable</h3>
-x$_{i,j}$: Employees working at time
-
+<div class="alert alert-info">
+	A boolean matrix signifies whether employee <em>i</em> works shift <em>j</em>
+</div>
+$$x_{i,j} \in \left\{ {0,1}\right\}
+ $$
 <h3>Constraints</h3>
 <div class="alert alert-info">
 	There must be enough employees to cover each shift

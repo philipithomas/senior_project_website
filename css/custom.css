@@ -11,3 +11,7 @@ section {
 .colophon {
 	margin-top: 50px;
 }
+
+.side-title {
+	line-height: 25px;
+}

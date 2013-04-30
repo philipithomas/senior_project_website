@@ -10,16 +10,29 @@ Employee$_{max,j}$: Maximum employees working at time<br />
 Preference$_{i,j}$: Employee Weighted Shift Preference<br />
 Availability$_{i,j}$: Boolean employee availability at time<br />
 
-
-Shift$_{min}$: Minimum employee shift length <br />
-Shift$_{max}$: Maximum employee shift length<br />
-
+Shift$_{min,i}$: Minimum employee shifts per week<br />
+Shift$_{max,i}$: Maximum employee shifts per week
 <h3>Decision Variable</h3>
 x$_{i,j}$: Employees working at time
 
-<!--
 <h3>Constraints</h3>
-TODO -->
+<div class="alert alert-info">
+	There must be enough employees to cover each shift
+</div>
+$$\sum\limits_{i} Availability_{i,j} \ge Employee_{min,j}$$
+
+<div class="alert alert-info">
+	An employee may not work more than two shifts in a 24-hour period. 
+	<br />
+	<i class="icon-info-sign icon-white"></i> The modulus means that this constraint wraps into the next week. 
+</div>
+ For each i and each j:
+$$\sum\limits_{k=j}^{j+5} x_{i,( k \bmod{ count(j) })} \le 2 $$
+
+<div class="alert alert-info">
+	An employee must work between their minimum and maximum shifts per week, inclusive.
+</div>
+$$ Shift_{min,i}\le \sum\limits_{j}x_{i,j} \le Shift_{max,i}$$
 
 <h3>Employee Shift Weighting</h3>
 <p>The employee preference parameter is created to allow employees to designate shifts they prefer. The model then optimizes to give employees the shifts they desire. </p>
@@ -42,6 +55,9 @@ Thus, in this case: $$\alpha = 3\beta$$</p>
 <p>
 Clearly, $\beta$ must always be less than one. However, we also consider that employees who specify only a single priority shift have more weight placed on that shift than someone who prioritizes all but one shift.  We specify that a prioritized shift may be no more than twice as weighted as a non-weighted shift, thus $\alpha<1$.
 </p>
+<div class="alert alert-info">
+	If an employee prioritizes only one shift, they are almost twice as likely to be assigned it. Every additional shift they prioritize decreases the likelihood that they will be placed in their desired shifts.
+</div>
 $$\alpha_{i} = \frac{count(\beta)}{\sum\limits_{j}Availability_{i,j}}$$
 
 <p>Thus,</p>
@@ -49,12 +65,20 @@ $$\alpha_{i} = \frac{count(\beta)}{\sum\limits_{j}Availability_{i,j}}$$
 $$\beta_{i} = \alpha \frac{count(\alpha)}{count(\beta)}$$
 <p>
 In addition, if $count(\beta_{i})=0$ or $count(\alpha_{i})=0$,</p>
+<div class="alert alert-info">
+	If an employee prioritizes every shift, it is no different than choosing not to prioritize any shifts. 
+</div>
 $$ \beta_{i} = \alpha_{i} = 0 $$ 
 <p>
 Thus,</p> 
+
 $$ \alpha_{i}*count(\alpha_{i}) +\beta_{i} * count(\beta_{i}) = \sum\limits_{j}Availability_{i,j}$$
 
 
 <h3>Objective Function</h3>
+<div class="alert alert-info">
+	Employee Satisfaction is maximized by maximizing the number of employees who are assigned to the shifts they want.
+</div>
+
 
 $$ max~Z = \sum\limits_{i,j} x_{i,j} \cdot Preferences_{i,j}$$

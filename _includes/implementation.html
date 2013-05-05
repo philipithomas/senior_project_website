@@ -1,6 +1,8 @@
 <div class="page-header"><h2>Implementation</h2></div>
 
-<p>A working implementation in Excel using the Solver package is forthcoming.</p>
+<p>A working implementation in Excel using the <a href="http://www.solver.com/premium-solver-pro">Premium Solver Pro</a> package is available. <a href="" class="badge badge-primary">Download Excel Implementation</p>
+
+<p>Based on the solver package parameters, this basic implementation schedules 4 employees over 18 shifts. Each employee has a minimum and maximum number of shifts they must work during this period. They each have differing availability and preferences of shifts. During each 24-hour period (6 shifts), they are limited to 4 shifts each.</p>
 
 <p>A greedy heuristic of using the employee preference matrix as the first iteration of the decision variable increases the speed of the model. In tests, using a heuristic of a Linear Programming Relaxation rounded to binary values proved to be little effective due to the high number of feasible shifts and low number of scheduled shifts. </p>
-<p>  Many Binary Integer Programming libraries exist, but in general a branching tree algorithm is preferred. </p>
+<p>  Many Binary Integer Programming libraries exist, but in general a branch and bound algorithm is preferred. Because this is an <a href="http://en.wikipedia.org/wiki/NP-complete">NP-Complete</a> problem, the runtime is non-deterministic. </p>

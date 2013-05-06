@@ -2,7 +2,8 @@
 
 <p>A working implementation in Excel using the <a href="http://www.solver.com">Solver</a> package is available. <a href="scheduling.xlsm"><span class="badge badge-success"><i class="icon-download-alt icon-white"></i> Download Excel Implementation</span></a></p>
 
-<p>Based on the solver package parameters, this basic implementation schedules 4 employees over 18 shifts. Each employee has a minimum and maximum number of shifts they must work during this period. They each have differing availability and preferences of shifts. During each 24-hour period (6 shifts), they are limited to 4 shifts each.</p>
+<p>Based on the solver package parameters, this basic implementation schedules 4 employees over 18 shifts. This equates to 72 decision variables and 98 constraints, which are successfully optimized by the package's GRG Nonlinear engine in approximately one hour when the decision variable is initialized as a null matrix.</p>
 
 <p>A greedy heuristic of using the employee preference matrix as the first iteration of the decision variable increases the speed of the model. In tests, using a heuristic of a Linear Programming Relaxation rounded to binary values proved to be little effective due to the high number of feasible shifts and low number of scheduled shifts. </p>
-<p>  Many Binary Integer Programming libraries exist, but in general a branch and bound algorithm is preferred. Because this is an <a href="http://en.wikipedia.org/wiki/NP-complete">NP-Complete</a> problem, the runtime is non-deterministic. </p>
+
+<p>  Many Binary Integer Programming libraries exist, but because this is an <a href="http://en.wikipedia.org/wiki/NP-complete">NP-Complete</a> problem, the runtime is non-deterministic. </p>

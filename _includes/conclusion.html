@@ -1,5 +1,11 @@
 <div class="page-header"><h2>Conclusion</h2></div>
 
-<p>The model functions as intended. Due to the low cost and high speed of modern computing, converting this algorithm into a Software as a Service (SaaS) product would be the ideal user interface. The difficulty in a real-world implementation is handling infeasible inputs - for instance, not having enough employees who may work at a particular shift. </p>
-<p>Basic scheduling needs are met by the model, and it excels at speed because the only nonlinearity is the binary aspect of the decision variables. However, the next step in a more advanced model is adding contiguity constraints such that there is a minimum break between non-continuous shifts. Such a nonlinear constraint adds significant computational difficulty.
-	</p>
+<p>
+	In a real-world implementation where there exist multiple roles in a workforce, for example having both a cook and a dishwasher who cannot fill each others roles, this algorithm should be implemented to treat every role in a company as an independent model with independent solutions. 
+</p><p>
+Due to the low cost and high speed of modern computing, converting this algorithm into a Software as a Service (SaaS) product would be the ideal user interface, particularly because it makes collecting employee availability and preferencees from the remote workforce easier for the manager.  The difficulty in a real-world implementation is handling infeasible inputs - for instance, not having enough employees who may work at a particular shift.
+</p><p>
+Basic scheduling needs are met by the model, and it excels at speed relative to other workforce management algorithms because the only nonlinearity is the binary aspect of the decision variables. However, the next step in a more advanced model is adding contiguity constraints such that there is a minimum break between non-continuous shifts. Such a nonlinear constraint adds significant computational difficulty.
+<p>
+Finally, due to the nondeterministic polynomial runtime of the algorithm and due to the nature of scheduling, the model does not need to be run to completion. Returning a non-optimal but feasible solution still satisfies the original problem statement because it automatically generates a schedule that meets all hard constraints, and any improvement over the worst-case scenario still provides recognizeable benefit to management and employees.
+</p>

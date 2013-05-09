@@ -12,7 +12,7 @@ $("document").ready(function() {
 
 	 });
 
-	$('#to-title').click(function(){
+	$('.to-title').click(function(){
 
 	    $('html, body').animate({
 	        scrollTop: $("#title").offset().top
@@ -24,7 +24,7 @@ $("document").ready(function() {
 
 	 });
  
-	$('#to-abstract').click(function(){
+	$('.to-abstract').click(function(){
 
 	    $('html, body').animate({
 	        scrollTop: $("#abstract").offset().top
@@ -36,7 +36,7 @@ $("document").ready(function() {
 
 	 });
  
-	$('#to-background').click(function(){
+	$('.to-background').click(function(){
 
 	    $('html, body').animate({
 	        scrollTop: $("#background").offset().top
@@ -48,7 +48,7 @@ $("document").ready(function() {
 
 	 });
  
-	$('#to-example').click(function(){
+	$('.to-example').click(function(){
 
 	    $('html, body').animate({
 	        scrollTop: $("#example").offset().top
@@ -60,7 +60,7 @@ $("document").ready(function() {
 
 	 });
  
-	$('#to-approach').click(function(){
+	$('.to-approach').click(function(){
 
 	    $('html, body').animate({
 	        scrollTop: $("#approach").offset().top
@@ -72,7 +72,7 @@ $("document").ready(function() {
 
 	 });
  
-	$('#to-model').click(function(){
+	$('.to-model').click(function(){
 
 	    $('html, body').animate({
 	        scrollTop: $("#model").offset().top
@@ -84,7 +84,7 @@ $("document").ready(function() {
 
 	 });
  
-	$('#to-implementation').click(function(){
+	$('.to-implementation').click(function(){
 
 	    $('html, body').animate({
 	        scrollTop: $("#implementation").offset().top
@@ -97,7 +97,7 @@ $("document").ready(function() {
 	 });
 
 
-	$('#to-conclusion').click(function(){
+	$('.to-conclusion').click(function(){
 
 	    $('html, body').animate({
 	        scrollTop: $("#conclusion").offset().top
